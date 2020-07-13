@@ -8,11 +8,62 @@
   <recommend-view :recommends="recommends"></recommend-view>
   <!--  -->
   <feature></feature>
+  <tab-control class="tab-control" :titles="['流行','新款','精选']"></tab-control>
+  <ul>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>
+  </ul>
 </div>
 </template>
 
 <script>
 import NavBar from 'components/common/navbar/NavBar'
+import TabControl from 'components/content/tabControl/TabControl'
+
 import HomeSwiper from './chilComps/HomeSwiper'
 import RecommendView from './chilComps/RecommendView'
 import Feature from './chilComps/FeatureView'
@@ -30,7 +81,8 @@ export default {
     NavBar,
     HomeSwiper,
     RecommendView,
-    Feature
+    Feature,
+    TabControl
   },
   created() {
     // 请求多个数据
@@ -57,5 +109,10 @@ export default {
     right: 0;
     top: 0;
     z-index: 9;
+  }
+  /**标题随滚动条悬停样式 */
+  .tab-control {
+    position: sticky;
+    top: 44px;
   }
 </style>
