@@ -1,13 +1,14 @@
 <template>
-<div>
-  <nav-bar class="home-nav">
-    <p slot="center">购物车</p>
-  </nav-bar>
+<div id="home">
+  <nav-bar class="home-nav"><p slot="center">购物街</p></nav-bar>
+  <home-swiper :banners="banners"></home-swiper>
 </div>
 </template>
 
 <script>
 import NavBar from 'components/common/navbar/NavBar'
+import HomeSwiper from './chilComps/HomeSwiper'
+
 import { getHomeMultidata } from "network/home";
 export default {
   name: 'Home',
@@ -18,7 +19,8 @@ export default {
     }
   },
   components: {
-    NavBar
+    NavBar,
+    HomeSwiper
   },
   created() {
     // 请求多个数据
