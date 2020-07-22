@@ -16,6 +16,10 @@ export default {
     probeType: {
       type: Number,
       default: 0
+    },
+    pullUpLoad: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -27,13 +31,17 @@ export default {
     // 1.创建BScroll对象 
     this.scroll = new BScroll(this.$refs.wrapper,{
       click: true,
-      probeType: this.probeType
+      probeType: this.probeType, /**滚动事件 */
+      pullUpLoad: this.pullUpLoad /**上拉事件 */
     })
     this.scroll.scrollTo(0,0)
-
     // 2监听滚动位置
     this.scroll.on('scroll',(position) => {
       this.$emit('scroll',position)
+    })
+    // 3监听上拉事件
+    this.scroll.on('pullingUp',() => {
+      this.$emit('pullingUp')
     })
   },
   methods: {

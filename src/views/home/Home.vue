@@ -3,7 +3,12 @@
   <!-- 标题 -->
   <nav-bar class="home-nav"><p slot="center">购物街</p></nav-bar>
 
-  <scroll class="content" ref="scroll" :probe-type="3" @scroll="contenePosition">
+  <scroll class="content" 
+    ref="scroll" 
+    :probe-type="3" 
+    :pull-up-load="true"
+    @scroll="contenePosition"
+    @pullingUp="loadingMore">
     <!-- 轮播图 -->
     <home-swiper :banners="banners"></home-swiper>
     <!-- 导航栏 -->
@@ -88,13 +93,15 @@ export default {
           break
       }
     },
-
     backTop() {
       this.$refs.scroll.scrollTo(0,0)
     },
     contenePosition(position) {
-      console.log(position)
       this.isBtnShow = -position.y > 1000
+    },
+    loadingMore() {
+      this.getHomeGoods(this.currentType)
+      this.$refs.scroll.finishPullUp()
     },
 
     /**
