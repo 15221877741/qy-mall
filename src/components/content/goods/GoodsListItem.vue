@@ -1,6 +1,6 @@
 <template>
   <div class="goods-item">
-    <img :src="goodsItem.show.img"/>
+    <img :src="goodsItem.show.img" @load="imageLoaded"/><!-- 在vue中通过load监听图片加载完成 -->
     <div class="goods-info">
       <p>{{goodsItem.title}}</p>
       <span class="price">{{goodsItem.price}}</span>
@@ -18,6 +18,21 @@ export default {
       default() {
         return {}
       }
+    }
+  },
+  methods: {
+    imageLoaded() {
+      /**
+       * 需求是当图片加载完刷新首页的scroll 解决滚动bug
+       * 这里需要发布一个事件 
+       *  实现思路： 
+       *    1 父子组件通信(this.$emit('xxx)) 传递给父组件 父组件在传递给home组件(麻烦)
+       *    2 Vuex 改变vuex中的属性  在home中监听vuex中枢性的变化
+       *    3 使用vue的事件总先(this.$bus.$emit('xxx)) 在home组件中监听事件总线(this.$bus.$on('xxx))
+       *      默认vue获取不到$bus 可以给vue原型附加属性 Vue.prototype.$bus = new Vue()  //new vue()可以当作事件总线
+       *   这里采用第三种实现
+       */
+      this.$bus.$emit('itemImageLoad')
     }
   }
  }
