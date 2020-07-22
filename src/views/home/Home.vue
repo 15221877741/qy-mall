@@ -3,7 +3,7 @@
   <!-- 标题 -->
   <nav-bar class="home-nav"><p slot="center">购物街</p></nav-bar>
 
-  <scroll class="content" ref="scroll">
+  <scroll class="content" ref="scroll" :probe-type="3" @scroll="contenePosition">
     <!-- 轮播图 -->
     <home-swiper :banners="banners"></home-swiper>
     <!-- 导航栏 -->
@@ -16,7 +16,7 @@
     <goods-list :goods="showGoods"></goods-list>
   </scroll>
   <!-- 要使组件监听点击事件(原生事件)需要.native修饰符 -->
-  <back-top @click.native="backTop"></back-top>
+  <back-top @click.native="backTop" v-show="isBtnShow"></back-top>
 </div>
 </template>
 
@@ -43,7 +43,8 @@ export default {
         'new': {page: 0, list: []},
         'sell': {page: 0, list: []}
       },
-      currentType: 'pop'
+      currentType: 'pop',
+      isBtnShow: false
     }
   },
   computed: {
@@ -71,7 +72,6 @@ export default {
     this.getHomeGoods('sell')
   },
   methods: {
-
     /**
      * 事件相关方法
      */
@@ -91,6 +91,10 @@ export default {
 
     backTop() {
       this.$refs.scroll.scrollTo(0,0)
+    },
+    contenePosition(position) {
+      console.log(position)
+      this.isBtnShow = -position.y > 1000
     },
 
     /**
