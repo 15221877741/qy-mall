@@ -54,7 +54,8 @@ export default {
       currentType: 'pop',
       isBtnShow: false,
       tabOffsetTop: 0, /**tab-control组件的距顶部值 */
-      istabFixed: false
+      istabFixed: false,
+      saveY: 0
     }
   },
   computed: {
@@ -88,6 +89,17 @@ export default {
       refresh()
     })
 
+  },
+  /**在点击底部菜单切换router-view时 保持切换原来的位置信息 */
+  activated() {
+    //路由进入时(活跃时)调用
+    this.$refs.scroll.scrollTo(0,this.saveY,0)
+    this.$refs.scroll.refresh()
+  },
+  deactivated() {
+    //在路由离开时调用
+    const y = this.$refs.scroll.scroll.y
+    this.saveY = y ? y : 0
   },
   methods: {
     /**
@@ -155,11 +167,12 @@ export default {
     /* padding-top: 44px; */
     /**适口 */
     height: 100vh;
+    position: relative;
   }
 
   .home-nav {
     background-color: var(--color-tint);
-    color: white;
+    color: #fff;
 
     /**在使用浏览器原生滚动时为了使导航不跟随浏览器滚动设置的 */
     /* position: fixed;
@@ -179,12 +192,12 @@ export default {
     position: relative;
     z-index: 9;
   }
-  .fixed {
+  /* .fixed {
     position: fixed;
     left: 0;
     right: 0;
     top: 44px;
-  }
+  } */
 
   .content {
     /* height: 200px; */
