@@ -1,5 +1,5 @@
 <template>
-  <div class="goods-item">
+  <div class="goods-item" @click="itemClick">
     <img :src="goodsItem.show.img" @load="imageLoaded"/><!-- 在vue中通过load监听图片加载完成 -->
     <div class="goods-info">
       <p>{{goodsItem.title}}</p>
@@ -33,6 +33,9 @@ export default {
        *   这里采用第三种实现
        */
       this.$bus.$emit('itemImageLoad')
+    },
+    itemClick() {
+      this.$router.push('/detail/'+this.goodsItem.iid)
     }
   }
  }

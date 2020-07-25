@@ -3,7 +3,7 @@
   <!-- 标题 -->
   <nav-bar class="home-nav"><p slot="center">购物街</p></nav-bar>
 
-  <tab-control class="tab-control1" :titles="['流行','新款','精选']" @tab-item-click="tabItemClick" ref="tabControl" :class="{fixed:istabFixed}" v-show="istabFixed"></tab-control><!-- 吸顶占位用的 -->
+  <tab-control class="tab-control1" :titles="['流行','新款','精选']" @tab-item-click="tabItemClick" ref="tabControl1" :class="{fixed:istabFixed}" v-show="istabFixed"></tab-control><!-- 吸顶占位用的 -->
 
   <scroll class="content" 
     ref="scroll" 
@@ -18,7 +18,7 @@
     <!--  -->
     <feature></feature>
     <!-- 流行 新款 精选 -->
-    <tab-control class="tab-control" :titles="['流行','新款','精选']" @tab-item-click="tabItemClick" ref="tabControl" :class="{fixed:istabFixed}"></tab-control>
+    <tab-control class="tab-control" :titles="['流行','新款','精选']" @tab-item-click="tabItemClick" ref="tabControl2" :class="{fixed:istabFixed}"></tab-control>
     <!-- 商品展示 -->
     <goods-list :goods="showGoods"></goods-list>
   </scroll>
@@ -111,7 +111,7 @@ export default {
 
       //这里等轮播图组件的图片加载完成执行 以获取实际的准确高度
       // console.log(this.$refs.tabControl.$el.offsetTop)3
-      this.tabOffsetTop = this.$refs.tabControl.$el.offsetTop
+      this.tabOffsetTop = this.$refs.tabControl2.$el.offsetTop
     },
     tabItemClick(index) {
       switch(index) {
@@ -125,6 +125,8 @@ export default {
           this.currentType = 'sell'
           break
       }
+      this.$refs.tabControl1.currentIndex = index;
+      this.$refs.tabControl2.currentIndex = index;
     },
     backTop() {
       this.$refs.scroll.scrollTo(0,0)
