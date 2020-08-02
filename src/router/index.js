@@ -40,7 +40,7 @@ const router = new VueRouter({
   routes,
   mode: 'history',
   /**配置路径在服务器中的地址  不配置的话 默认是 服务器ip:端口/.. 这样很有可能404 为了便于管理和测试 直接把dist文件扔了上去..  打包时需要*/
-  // base: '/dist'
+  base: '/dist'
 })
 
 export default router
