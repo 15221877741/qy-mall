@@ -13,9 +13,22 @@ module.exports={
         .set('views',resolve('./src/views'))
         //set第一个参数：设置的别名，第二个参数：设置的路径
     },
-    publicPath: './',
-    outputDir: "dist",
-    assetsDir: "assets",
+    // configureWebpack: {
+    //     resolve: {
+    //         alias: {
+    //         'assets': '@/assets',
+    //         'common': '@/common',
+    //         'components': '@/components',
+    //         'network': '@/network',
+    //         'views': '@/views',
+    //         }
+    //     }
+    // },
+    
+    /**打包时需要 运行serve时注掉 */
+    // publicPath: './',
+    // outputDir: "dist",
+    // assetsDir: "assets",
 }
 
 // module.exports = {
